@@ -48,11 +48,10 @@ if (!empty($cell)) {
     $stmt = $conn->prepare($inserir);
     $stmt->execute();
     echo $stmt->rowCount() . " records UPDATED successfully";
-    echo $stmt->rowCount() . " records UPDATED successfully";
     }
     catch(PDOException $e)
     {
-    echo $sql . "<br>" . $e->getMessage();
+    echo $inserir . "<br>" . $e->getMessage();
     }
 
 $conn = null;

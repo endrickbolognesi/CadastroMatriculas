@@ -76,7 +76,7 @@
         name:"<?php echo $r['nome']; ?>", 
         atosCad:"<?php echo $r['atos_cadastrados']; ?>",
         atosExis:"<?php echo $r['atos_existentes']; ?>",
-        //duvidas:"<?php echo $r['duvidas']; ?>",
+        duvidas:"<?php echo $r['duvidas']; ?>",
     
     },
     <?php endwhile; ?>
