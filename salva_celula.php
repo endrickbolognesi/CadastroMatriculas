@@ -3,58 +3,72 @@ require_once('conexao.php');
 $cell = $_POST['valor'];
 $campo = $_POST['campo'];
 $index = $_POST['index'];
-$campo_bd ='';
+$campo_bd = '';
+
 switch ($campo) {
-    case $campo == 'data_rascunho':
-        $campo_bd = $campo;
+    case 'data_rascunho':
+        $campo_bd = "data_rascunho";
         break;
-    case $campo == 'newdate':
-        $campo_bd = $campo;
+    case 'dataCerta':
+        $campo_bd = "newdate";
         break;
-    case $campo == 'area':
-        $campo_bd = $campo;
+    case 'area':
+        $campo_bd = "data_rascunho";
         break;
-    case $campo == 'proprietarios':
-        $campo_bd = $campo;
+    case 'proprietarios':
+        $campo_bd = "data_rascunho";
         break;
-    case $campo == 'cad_imobiliario':
-        $campo_bd = $campo;
+    case 'cadImibiliario':
+        $campo_bd = "cad_imobiliario";
         break;
-    case $campo == 'onus_vigente':
-        $campo_bd = $campo;
+    case 'onus':
+        $campo_bd = "onus_vigente";
         break;
-    case $campo == 'data_conf':
-        $campo_bd = $campo;
+    case 'dataNova':
+        $campo_bd = "datanova";
         break;
-    case $campo == 'datanova':
-        $campo_bd = $campo;
+    case 'name':
+        $campo_bd = "nome";
         break;
-    case $campo == 'nome':
-        $campo_bd = $campo;
+    case 'atosCad':
+        $campo_bd = "atos_cadastrados";
         break;
-    case $campo == 'atos_cadastrados':
-        $campo_bd = $campo;
+    case 'atosExis':
+        $campo_bd = "atos_existentes";
         break;
-    case $campo == 'atos_existentes':
-        $campo_bd = $campo;
-        break;
-    case $campo == 'duvidas':
-        $campo_bd = $campo;
+    case 'duvidas':
+        $campo_bd = "duvidas";
         break;
  
 }
 //$salvar = $_REQUEST["action"];
 if (!empty($cell)) {
-    //$inserir = "UPDATE rascunho_cm SET matricula_id='$valor',  $campo_bd='$campo' WHERE matricula_id ='$index'";
+    try{
+    $inserir = "UPDATE rascunho_cm SET ".$campo_bd."='$cell' WHERE matricula_id ='$index' "; //&& $campo_bd='$campo'
+    $stmt = $conn->prepare($inserir);
+    $stmt->execute();
+    echo $stmt->rowCount() . " records UPDATED successfully";
+    echo $stmt->rowCount() . " records UPDATED successfully";
+    }
+    catch(PDOException $e)
+    {
+    echo $sql . "<br>" . $e->getMessage();
+    }
+
+$conn = null;
+
+
 
     echo json_encode(array('success' => 1));
     print_r( $cell);
-    echo '</br>';
+    echo '/';
     print_r( $campo);
-    echo '</br>';
+    echo '/';
     print_r( $index);
-    echo '</br>';
+    echo '/';
     print_r( $campo_bd);
+    echo '/';    
+    var_dump($campo_bd);
 } else {
     echo json_encode(array('success' => 0));
     echo $cell;

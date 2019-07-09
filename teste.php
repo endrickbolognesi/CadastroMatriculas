@@ -66,9 +66,17 @@
 
     {
         id:<?php echo $r['matricula_id'] ?>, 
-        datarasc:"<?php echo $r['data_rascunho']; ?>", 
+        //datarasc:"<?php echo $r['data_rascunho']; ?>",
+        dataCerta:"<?php echo $r['newdate']; ?>",
+        area:"<?php echo $r['area']; ?>",
+        proprietarios:"<?php echo $r['proprietarios']; ?>",
+        cadImibiliario:"<?php echo $r['cad_imobiliario']; ?>",
+        onus:"<?php echo $r['onus_vigente']; ?>",
+        dataNova:"<?php echo $r['datanova']; ?>",
         name:"<?php echo $r['nome']; ?>", 
-        
+        atosCad:"<?php echo $r['atos_cadastrados']; ?>",
+        atosExis:"<?php echo $r['atos_existentes']; ?>",
+        //duvidas:"<?php echo $r['duvidas']; ?>",
     
     },
     <?php endwhile; ?>
@@ -123,9 +131,9 @@ var dateEditor = function(cell, onRendered, success, cancel){
     layout:"fitColumns",
     //persistenceMode: true,
     columns:[
-        {title:"Matricula", field:"id", width:100, frozen:true, editor:true},
+        {title:"Matricula", field:"id", width:100, frozen:true},
         {title:"Nome", field:"name", width:100, editor:true},
-        {title:"Data", field:"datarasc", editor:true},
+        //{title:"Data", field:"datarasc", editor:true},
         {title:"Data Certa F", field:"dataCerta", editor:true},
         {title:"Area", field:"area", editor:true},
         {title:"Proprietarios", field:"proprietarios", editor:true},
