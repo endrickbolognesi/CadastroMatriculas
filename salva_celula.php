@@ -3,6 +3,7 @@ require_once('conexao.php');
 $cell = $_POST['valor'];
 $campo = $_POST['campo'];
 $index = $_POST['index'];
+$old = $_POST['old'];
 $campo_bd = '';
 
 switch ($campo) {
@@ -42,7 +43,7 @@ switch ($campo) {
  
 }
 //$salvar = $_REQUEST["action"];
-if (!empty($cell)) {
+if (!empty($cell) OR !empty($old) ) {
     try{
     $inserir = "UPDATE rascunho_cm SET ".$campo_bd."='$cell' WHERE matricula_id ='$index' "; //&& $campo_bd='$campo'
     $stmt = $conn->prepare($inserir);
@@ -58,21 +59,27 @@ $conn = null;
 
 
 
-    echo json_encode(array('success' => 1));
+    //echo json_encode(array('success' => 1));
     print_r( $cell);
-    echo '/';
+    echo '/campo </br>';
     print_r( $campo);
-    echo '/';
+    echo '/index </br>';
     print_r( $index);
-    echo '/';
+    echo '/c_bd </br>';
     print_r( $campo_bd);
-    echo '/';    
+    echo '/c_bd </br>';    
     var_dump($campo_bd);
+    echo '/OLD </br>';    
+    echo($old);
 } else {
-    echo json_encode(array('success' => 0));
+    //echo json_encode(array('success' => 0));
     echo $cell;
+    echo '/ </br>';    
     print_r( $campo);
+    echo '/ </br>';    
     print_r( $index);
     print_r( $campo_bd);
+    echo '/>> </br>';    
+    print_r($old);
 }
 

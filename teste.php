@@ -8,10 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="node_modules/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+    <link href="node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
         <script type="text/javascript" src="node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
+        <script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
+        <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     
     <title>Teste</title>
 </head>
@@ -26,9 +30,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Início <span class="sr-only">(current)</span></a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li> -->
+        
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Baixar</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
@@ -38,16 +40,17 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Procurar">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar</button>
+            b4
+                <button class="btn btn-primary">
+                        Notification <span class="badge badge-danger">5</span>
+                </button>
             </form>
         </div>
     </nav>
 
-        <!-- <button type="submit" class="btn btn-primary" id="download-xlsx">XLXB</button> -->
-        <form name="teste" id="form_id_teste" action="salva_celula.php" method="POST" target="BLANK">
+        
             <div id="example-table"></div>
-        </form>
+        
         
     </div>
     <script  type="text/javascript">
@@ -63,10 +66,10 @@
     
     while ($r = $data->fetch()): 
     ?>
-
+    
     {
         id:<?php echo $r['matricula_id'] ?>, 
-        //datarasc:"<?php echo $r['data_rascunho']; ?>",
+        //datarasc:"<?php //echo $r['data_rascunho']; ?>",
         dataCerta:"<?php echo $r['newdate']; ?>",
         area:"<?php echo $r['area']; ?>",
         proprietarios:"<?php echo $r['proprietarios']; ?>",
@@ -77,8 +80,8 @@
         atosCad:"<?php echo $r['atos_cadastrados']; ?>",
         atosExis:"<?php echo $r['atos_existentes']; ?>",
         duvidas:"<?php echo $r['duvidas']; ?>",
-    
-    },
+        
+    },  
     <?php endwhile; ?>
 ];
 
@@ -122,24 +125,33 @@ var dateEditor = function(cell, onRendered, success, cancel){
 
     return input;
 };
-    
+
     
       
     var table = new Tabulator("#example-table", {
     data:teste,
     height:"500px",
     layout:"fitColumns",
+    responsiveLayout:true,
     //persistenceMode: true,
     columns:[
         {title:"Matricula", field:"id", width:100, frozen:true},
         {title:"Nome", field:"name", width:100, editor:true},
         //{title:"Data", field:"datarasc", editor:true},
-        {title:"Data Certa F", field:"dataCerta", editor:true},
+        {title:"Data Certa F", field:"dataCerta", editor:true, formatter:"datetime", formatterParams:{
+            inputFormat:"YYYY-MM-DD",
+            outputFormat:"DD/MM/YYYY",
+            invalidPlaceholder:"(Data inválida)",
+        }},
         {title:"Area", field:"area", editor:true},
         {title:"Proprietarios", field:"proprietarios", editor:true},
         {title:"Cadastro Imobiliario", field:"cadImibiliario", editor:true},
         {title:"Ônus", field:"onus", editor:true},
-        {title:"DataConf", field:"dataNova", editor:true},
+        {title:"DataConf", field:"dataNova", editor:true, formatter:"datetime", formatterParams:{
+            inputFormat:"YYYY-MM-DD",
+            outputFormat:"DD/MM/YYYY",
+            invalidPlaceholder:"(Data inválida)",
+        }},
         {title:"Atos Cadastrados", field:"atosCad", editor:true},
         {title:"Atos Existentes", field:"atosExis", editor:true},
         {title:"Dúvidas", field:"duvidas", editor:true},
@@ -149,7 +161,7 @@ var dateEditor = function(cell, onRendered, success, cancel){
         // This callback is called any time a cell is edited.
         $.ajax({
         url: "salva_celula.php",
-        data: {valor: cell.getValue(), campo: cell.getField(), index: cell.getRow().getIndex()},
+        data: {valor: cell.getValue(), campo: cell.getField(), index: cell.getRow().getIndex(), old: cell.getOldValue()},
         // getField <<<<<<<<<<<<<<<<<
         
         type: "post",
@@ -157,10 +169,21 @@ var dateEditor = function(cell, onRendered, success, cancel){
          console.log('Carregando...');
         },
         success: function(response, textStatus, xhr){
-            alert("AJAX result: " + response + "; status: " + textStatus);
+            //alert("AJAX result: " + response + "; status: " + textStatus);
+            Swal.fire({
+            type: 'success',
+            title: 'Enviado',
+            text: 'AJAX result: ' + response + '; status: ' + textStatus,
+            })
+            
         },
         error: function(XMLHttpRequest, textStatus, error){
-            alert("AJAX error: " + textStatus + "; " + error);
+            //alert("AJAX error: " + textStatus + "; " + error);
+            Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'AJAX error: ' + textStatus + '; ' + error,
+            })
         }
         })
     },
