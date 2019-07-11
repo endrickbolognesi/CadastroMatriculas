@@ -3,6 +3,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,50 +11,94 @@
     <link href="node_modules/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
     <link href="node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/toggle.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
-        <script type="text/javascript" src="node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
-        <script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
-        <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
-    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="node_modules/tabulator-tables/dist/js/tabulator.js"></script>
+    <script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+
     <title>Teste</title>
+    <style type="text/css">
+        #example-table {
+            background-color: #ccc;
+            border: 1px solid #333;
+
+        }
+
+        /*Theme the header*/
+        #example-table .tabulator-header {
+            background-color: #333;
+            color: #fff;
+        }
+
+        #example-table .tabulator-col-content {
+            background-color: #333;
+            color: #fff;
+            border: 2px solid #11590d;
+        }
+
+        /*Allow column header names to wrap lines*/
+        #example-table .tabulator-header .tabulator-col,
+        #example-table .tabulator-header .tabulator-col-row-handle {
+            white-space: normal;
+        }
+
+        /*Color the table rows*/
+        #example-table .tabulator-tableHolder .tabulator-table .tabulator-row {
+            color: #fff;
+            background-color: #666;
+        }
+
+        /*Color even rows*/
+        #example-table .tabulator-tableHolder .tabulator-table .tabulator-row:nth-child(even) {
+            background-color: #444;
+        }
+        }
+    </style>
 </head>
+
 <body>
     <div class="container-fluid">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Pasta 23.201- 23.250</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation"></button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Início <span class="sr-only">(current)</span></a>
-                </li>
-        
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Baixar</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">PDF</a>
-                        <a class="dropdown-item" href="#" id="download-xlsx">Excel/Xlsx</a>
-                    </div>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-            b4
-                <button class="btn btn-primary">
-                        Notification <span class="badge badge-danger">5</span>
-                </button>
-            </form>
-        </div>
-    </nav>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Pasta 23.201- 23.250</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation"></button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Início <span class="sr-only">(current)</span></a>
+                    </li>
 
-        
-            <div id="example-table"></div>
-        
-        
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Baixar</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#">PDF</a>
+                            <a class="dropdown-item" href="#" id="download-xlsx">Excel/Xlsx</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="true"
+                        autocomplete="off">
+                        <div class="handle"></div>
+                    </button>
+                    <button class="btn btn-dark ">
+                        <i class="fa fa-bell-o" aria-hidden="true"></i>
+                        <span class="badge badge-danger">5</span>
+                    </button>
+                </form>
+            </div>
+        </nav>
+
+        <div id="example-table"></div>
+
+
     </div>
-    <script  type="text/javascript">
+    <script type="text/javascript">
      
    var teste = [
     <?php
@@ -133,6 +178,10 @@ var dateEditor = function(cell, onRendered, success, cancel){
     height:"500px",
     layout:"fitColumns",
     responsiveLayout:true,
+    pagination:"local",
+    paginationSize:50,
+    paginationSizeSelector:[10, 50, 100, 200],
+    
     //persistenceMode: true,
     columns:[
         {title:"Matricula", field:"id", width:100, frozen:true},
