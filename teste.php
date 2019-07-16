@@ -55,7 +55,7 @@
         #example-table .tabulator-tableHolder .tabulator-table .tabulator-row:nth-child(even) {
             background-color: #444;
         }
-        }
+        
     </style>
 </head>
 
@@ -175,7 +175,7 @@ var dateEditor = function(cell, onRendered, success, cancel){
       
     var table = new Tabulator("#example-table", {
     data:teste,
-    height:"500px",
+    height:"800px",
     layout:"fitColumns",
     responsiveLayout:true,
     pagination:"local",
