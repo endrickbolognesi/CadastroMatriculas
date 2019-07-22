@@ -41,7 +41,7 @@
 
         </div>
 
-        <div class="ui dropdown item">
+        <div class="ui dropdown item ">
           <!-- <img class="ui avatar image" src="img/square-image.png"> -->
           <span>Usuário</span>
           <i class="dropdown icon"></i>
@@ -57,119 +57,9 @@
     </div>
   </div>
 <!-- ui bottom attached segment sidebar -->
-<div class="ui inverted sidebar very thin icon vertical left menu overlay visible  "
-  style="-webkit-transition-duration: 0.1s; overflow: visible !important; ">
-  <!-- <div class="item logo">
-    <img src="https://image.flaticon.com/icons/svg/866/866218.svg" />
-    <img src="https://image.flaticon.com/icons/svg/866/866218.svg" style="display: none" />
-  </div> -->
-  <div class="ui accordion displaynone">
-    <div class="title item">Dashboard <i class="dropdown icon"></i>
-    </div>
-    <div class="content">
-      <a class="item" href="dashboard.html">Dashboard </a>
-    </div>
-
-    <div class="title item">
-      <i class="dropdown icon"></i> Apps
-    </div>
-    <div class="content">
-      <a class="item" href="inbox.html"</a>
-      <a class="item" href="mail.html">Mailbox</a>
-      <a class="item" href="chat.html">Chat</a>
-      <a class="item" href="contacts.html">Contacts</a>
-      <a class="item" href="photoeditor.html">Photo
-      </a>
-      <a class="item" href="calendar.html">Calendar</a>
-      <a class="item" href="filter.html">Filter</a>
-      <a class="item" href="todo.html">Todo</a>
-    </div>
-    <div class="title item">
-      <i class="dropdown icon"></i> Layouts </div>
-    <div class="content">
-      <a class="item" href="sidebar.html">Sidebar</a>
-      <a class="item" href="menu.html">Nav</a>
-      <a class="item" href="animatedicon.html">Animated     </a>
-      <a class="item" href="box.html">Box</a>
-      <a class="item" href="cards.html">Cards</a>
-      <a class="item" href="color.html">Colors</a>
-      <a class="item" href="comment.html">Comment</a>
-      <a class="item" href="embed.html">Embed</a>
-      <a class="item" href="faq.html">Faq</a>
-      <a class="item" href="feed.html">Feed</a>
-      <a class="item" href="gallery.html">Gallery</a>
-      <a class="item" href="grid.html">Grid</a>
-      <a class="item" href="header.html">Header</a>
-      <a class="item" href="timeline.html">Timeline</a>
-      <a class="item" href="message.html">Message</a>
-      <a class="item" href="price.html">Price</a>
-    </div>
-
-    <a class="item">
-      <b>Components</b>
-    </a>
-
-
-  </div>
-  <div class="ui dropdown item displayblock displaynone ">
-    <z class="displaynone">Dashboard</z>
-    <i class="icon demo-icon heart blue icon-heart"></i>
-
-    <div class=" menu">
-      <div class="header">
-        Dashboard
-      </div>
-      <div class="ui divider"></div>
-      <a class="item" href="dashboard.html">Dashboard</a>
-    </div>
-  </div>
-  <div class="ui dropdown item displayblock displaynone ">
-    <z class="displaynone">Layout</z>
-    <i class="icon demo-icon world icon-globe"></i>
-
-    <div class="mav menu">
-      <div class="header">
-        Layout
-      </div>
-      <div class="ui divider"></div>
-      <a class="item" href="inbox.html">Inbox</a>
-      <a class="item" href="mail.html">Mailbox</a>
-      <a class="item" href="chat.html">Chat</a>
-      <a class="item" href="contacts.html">Contacts</a>
-      <a class="item" href="photoeditor.html">Photo
-      </a>
-      <a class="item" href="calendar.html">Calendar</a>
-      <a class="item" href="filter.html">Filter</a>
-      <a class="item" href="todo.html">Todo</a>
-    </div>
-  </div>
-  <div class="ui dropdown item displayblock displaynone ">
-    <z class="displaynone">Pages</z>
-    <i class="icon demo-icon  icon-params alarm"></i>
-
-    <div class=" menu">
-      <div class="header">
-        Layouts
-      </div>
-      <div class="ui divider"></div>
-      <a class="item" href="sidebar.html">Sidebar</a>
-      <a class="item" href="menu.html">Nav</a>
-      <a class="item" href="animatedicon.html">Animated     </a>
-      <a class="item" href="box.html">Box</a>
-      <a class="item" href="cards.html">Cards</a>
-      <a class="item" href="color.html">Colors</a>
-      <a class="item" href="comment.html">Comment</a>
-      <a class="item" href="embed.html">Embed</a>
-      <a class="item" href="faq.html">Faq</a>
-      <a class="item" href="feed.html">Feed</a>
-      <a class="item" href="gallery.html">Gallery</a>
-      <a class="item" href="grid.html">Grid</a>
-      <a class="item" href="header.html">Header</a>
-      <a class="item" href="timeline.html">Timeline</a>
-      <a class="item" href="message.html">Message</a>
-      <a class="item" href="price.html">Price</a>
-    </div>
-  </div>
+<div class="ui inverted sidebar very thin icon vertical left menu overlay visible  ">
+ 
+  
 </div>
 <div class="ui fluid container">
 
@@ -204,6 +94,8 @@ $('.context.example .ui.sidebar').sidebar({
 $('.ui.checkbox').checkbox().on("click", function(){
   $(".ui.menu").toggleClass("inverted");
   $(".ui.accordion .title:not(.ui)").toggleClass("inverteCor");
+  background-color: rgba(0,0,0,.05);
+    color: rgba(245, 245, 245, 0.95);
   
 });
 
@@ -223,7 +115,6 @@ $(".mav").on("click", function(){
      
      var teste = [
       <?php
-      // matricula_id, data_rascunho, newdate, area, proprietarios, cad_imobiliario, onus_vigente, data_conf, datanova, nome, atos_cadastrados, atos_existentes, duvidas 
       $sql = 'SELECT *
           FROM rascunho_cm
           ORDER BY matricula_id';

@@ -19,7 +19,7 @@
     <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
 
     <title>Conferência</title>
-</head>
+</link>
 <style>
 
 </style>
@@ -41,7 +41,7 @@
           </div>
         </div>
 
-        <div class="ui dropdown item">
+        <div class="ui inverted dropdown item " >
           <!-- <img class="ui avatar image" src="img/square-image.png"> -->
           <span>Usuário</span>
           <i class="dropdown icon"></i>
@@ -74,8 +74,7 @@
       <i class="dropdown icon"></i> Apps
     </div>
     <div class="content">
-      <a class="item" href="inbox.html
-      </a>
+      <a class="item" href="inbox.html">asdas  </a>
       <a class="item" href="mail.html">Mailbox</a>
       <a class="item" href="chat.html">Chat</a>
       <a class="item" href="contacts.html">Contacts</a>
@@ -113,9 +112,10 @@
 
 
   </div>
-  <div class="ui dropdown item displayblock displaynone ">
+  
+  <div class="ui inverted dropdown item displayblock displaynone ">
     <z class="displaynone">Dashboard</z>
-    <i class="icon demo-icon heart icon-heart"></i>
+    <i class="icon demo-icon heart red icon-heart"></i>
 
     <div class=" menu">
       <div class="header">
@@ -125,9 +125,9 @@
       <a class="item" href="dashboard.html">Dashboard</a>
     </div>
   </div>
-  <div class="ui dropdown item displayblock displaynone ">
+  <div class="ui inverted dropdown item displayblock displaynone ">
     <z class="displaynone">Layout</z>
-    <i class="icon demo-icon world icon-globe"></i>
+    <i class="icon demo-icon world orange icon-globe"></i>
 
     <div class="menu">
       <div class="header">
@@ -145,9 +145,9 @@
       <a class="item" href="todo.html">Todo</a>
     </div>
   </div>
-  <div class="ui dropdown item displayblock displaynone ">
+  <div class="ui inverted dropdown item displayblock displaynone ">
     <z class="displaynone">Pages</z>
-    <i class="icon demo-icon  icon-params alarm"></i>
+    <i class=" icon demo-icon  icon-params alarm"></i>
 
     <div class=" menu">
       <div class="header">
@@ -178,7 +178,7 @@
 
 </div>
 <div id="example-table" class="marginlefting asd" style="border-radius: 0!important; border: 0; margin-left: 260px; -webkit-transition-duration: 0.1s;"></div>
-
+  
 <script>
   $(".openbtn").on("click", function() {
   $(".ui.sidebar").toggleClass("very thin icon");
@@ -205,6 +205,7 @@ $('.context.example .ui.sidebar').sidebar({
 
 $('.ui.checkbox').checkbox().on("click", function(){
   $(".ui.menu").toggleClass("inverted");
+  $(".ui.dropdown.item").toggleClass("inverted");
   $(".ui.accordion .title:not(.ui)").toggleClass("inverteCor");
 });
 
@@ -218,8 +219,7 @@ $(".mav").on("click", function(){
 
    }
  });
-</script>
-<script type="text/javascript">
+
      
      var teste = [
       <?php
@@ -349,5 +349,7 @@ $(".mav").on("click", function(){
   
   
       </script>
+
+
 </body>
 </html>

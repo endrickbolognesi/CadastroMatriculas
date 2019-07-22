@@ -13,7 +13,7 @@
   #example-table .tabulator-col-content {
     background-color: #333;
     color: #fff;
-    border: 2px solid #11590d;
+    border-bottom: 4px solid #24b61c;
   }
   
   /*Allow column header names to wrap lines*/
@@ -68,25 +68,37 @@
   }
 
   .inverteCor{
-    
     -webkit-filter: invert(100%);
     filter: invert(1);
   }
   .ui.accordion .title:not(.ui) {
-    color: #c4c4c4;
-    /* color: #3ccc18; */
+
+    color: #d6d6d6;
   } 
+
   .ui.menu .active.item:hover, .ui.vertical.menu .active.item:hover {
     background-color: rgba(0,0,0,.05);
     color: rgba(245, 245, 245, 0.95);
 }
 
-  /* .ui.link.menu .item:hover, .ui.menu .dropdown.item:hover, .ui.menu .link.item:hover, .ui.menu a.item:hover {
-    background: rgb(130, 42, 189);
-    color: #3ccc18;
-} */
   .dropdown .menu .header {
     padding-top: 3.9px !important;
     padding-bottom: 3.9px !important;
+    
   }
-  
+  /* .ui.icon.menu .icon:before {
+    -webkit-filter: invert(100%);
+    filter: invert(1);
+    opacity: 1;
+}
+i.icon.alarm:before {
+    content: "\f0f3";
+}
+i.icon:before {
+    background: 0 0!important;
+    
+}
+*, :after, :before {
+    box-sizing: inherit;
+}
+   */
