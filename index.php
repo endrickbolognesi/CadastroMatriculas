@@ -1,3 +1,10 @@
+
+<?php
+session_start();
+ 
+require 'init.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,7 +18,13 @@
     <script type="text/javascript" src="node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
    
     <title>Teste</title>
-</head>
+</head> 
+
+        <?php if (isLoggedIn()): ?>
+            <p>Olá, <?php echo $_SESSION['user_name']; ?>. <a href="panel.php">Painel</a> | <a href="logout.php">Sair</a></p>
+        <?php else: ?>
+            <p>Olá, visitante. <a href="login.html">Login</a></p>
+        <?php endif; ?>
 <body>
     <button type="submit" id="download-xlsx">XLXB</button>
     <a name="" id="download-json" class="btn btn-primary" href="#" role="button">Baixar PDF</a>

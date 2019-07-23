@@ -1,15 +1,5 @@
-<?php
-session_start();
-//require_once('conexao.php');
 
-require 'init.php';
-require 'check.php';
-?>
-<?php include'header.html' ?>
-<div id="example-table" class="marginlefting asd" style="border-radius: 0!important; border: 0; margin-left: 260px; -webkit-transition-duration: 0.1s;"></div>
-  
-<script>
-  $(".openbtn").on("click", function() {
+$(".openbtn").on("click", function() {
   $(".ui.sidebar").toggleClass("very thin icon");
   $(".asd").toggleClass("marginlefting");
   $(".sidebar z").toggleClass("displaynone");
@@ -34,9 +24,10 @@ $('.context.example .ui.sidebar').sidebar({
 
 $('.ui.checkbox').checkbox().on("click", function(){
   $(".ui.menu").toggleClass("inverted");
-  $(".ui.dropdown.item").toggleClass("inverted");
   $(".ui.accordion .title:not(.ui)").toggleClass("inverteCor");
+  
 });
+
 
 $(".mav").on("click", function(){
   $(".mav").removeClass("active");
@@ -52,7 +43,7 @@ $(".mav").on("click", function(){
      
      var teste = [
       <?php
-       $conn = db_connect();
+      $conn = db_connect();
       // matricula_id, data_rascunho, newdate, area, proprietarios, cad_imobiliario, onus_vigente, data_conf, datanova, nome, atos_cadastrados, atos_existentes, duvidas 
       $sql = 'SELECT *
           FROM rascunho_cm
@@ -65,8 +56,8 @@ $(".mav").on("click", function(){
       
       {
           id:<?php echo $r['matricula_id'] ?>,
-          dataCerta:"<?php echo $r['datanova']; ?>",
-          name:"<?php echo $r['nome']; ?>",       
+          dataCerta:"<?php echo $r['newdate']; ?>",
+          name:"<?php echo $r['nome']; ?>", 
           atosCad:"<?php echo $r['atos_cadastrados']; ?>",
           atosExis:"<?php echo $r['atos_existentes']; ?>",
           duvidas:"<?php echo $r['duvidas']; ?>",
@@ -119,6 +110,9 @@ $(".mav").on("click", function(){
       
         
       var table = new Tabulator("#example-table", {
+        selectable:true,
+        selectable:5,
+      selectableRollingSelection:false,
       data:teste,
       height:"800px",
       layout:"fitColumns",
@@ -130,15 +124,15 @@ $(".mav").on("click", function(){
       //persistenceMode: true,
       columns:[
           {title:"Matricula", field:"id", width:100, frozen:true},
-          {title:"Nome", field:"name", width:100, editor:true},
-          {title:"DataConf", field:"dataNova", editor:true, formatter:"datetime", formatterParams:{
-            inputFormat:"YYYY-MM-DD",
-            outputFormat:"DD/MM/YYYY",
-            invalidPlaceholder:"(Data inválida)",
+          {title:"Nome", field:"name", width:100,editor:true},
+          {title:"Data Certa F", field:"dataCerta", formatter:"datetime",editor:true, formatterParams:{
+              inputFormat:"YYYY-MM-DD",
+              outputFormat:"DD/MM/YYYY",
+              invalidPlaceholder:"(Data inválida)",
           }},
-          {title:"Atos Cadastrados", field:"atosCad", editor:true},
-          {title:"Atos Existentes", field:"atosExis", editor:true},
-          {title:"Dúvidas", field:"duvidas", editor:true},
+          {title:"Atos Cadastrados", field:"atosCad",editor:true},
+          {title:"Atos Existentes", field:"atosExis",editor:true},
+          {title:"Dúvidas", field:"duvidas",editor:true},
       ],
       
       cellEdited:function(cell){
@@ -176,11 +170,3 @@ $(".mav").on("click", function(){
   $("#download-xlsx").click(function(){
       table.download("xlsx", "data.xlsx", {sheetName:"teste"});
   });
-  
-  
-      </script>
-
-
-
-</body>
-</html>

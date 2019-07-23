@@ -1,68 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="node_modules/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
-    <link href="node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="semantic/semantic.min.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script>
-    <script type="text/javascript" src="node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
-    <script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
-    <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-    <title>Login</title>
-
-<style type="text/css">
-	.login-form {
-		width: 340px;
-    	margin: 50px auto;
-	}
-    .login-form form {
-    	margin-bottom: 15px;
-        background: #f7f7f7;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        padding: 30px;
+    <script type="text/javascript" src="semantic/semantic.js"></script>
+</head>
+<style>
+  
+    body > .grid {
+      height: 100%;
     }
-    .login-form h2 {
-        margin: 0 0 15px;
+    body{
+      background: rgb(0,188,148);
+background: radial-gradient(circle, rgba(0,188,148,1) 0%, rgba(0,67,110,1) 100%);
+  /*    background: rgb(0,67,110);
+background: radial-gradient(circle, rgba(0,67,110,1) 0%, rgba(0,188,148,1) 100%);*/
     }
-    .form-control, .btn {
-        min-height: 38px;
-        border-radius: 2px;
+    .image {
+      margin-top: -100px;
     }
-    .btn {        
-        font-size: 15px;
-        font-weight: bold;
+    .column {
+      max-width: 450px;
+    }
+    .content{
+      color: white;
     }
 </style>
-</head>
 <body>
-<div class="login-form">
-    <form action="/examples/actions/confirmation.php" method="post">
-        <h2 class="text-center">Login</h2>       
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nome" required="required">
+  <div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui image header">
+      <div class="content">
+        Cadastro de Matrículas
+      </div>
+    </h2>
+  
+    <form action="login.php" method="post" class="ui large form">
+      <div class="ui stacked secondary  segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input id="login" type="text" name="login" placeholder="Usuario">
+          </div>
         </div>
-        <div class="form-group">
-            <input type="password" class="form-control" placeholder="Senha" required="required">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input id="password' type="password" name="password" placeholder="Senha">
+          </div>
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-        </div>
-        <!-- <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox">Lembrar da Senha</label>
-            <a href="#" class="pull-right">Forgot Password?</a>
-        </div>         -->
+        <input value="Entrar" type="submit" class="ui fluid large blue submit button">
+      </div>
+
+      <div class="ui error message"></div>
+
     </form>
-    <!-- /p class="text-center"><a href="#">Create an Account</a></p> -->
+  </div>
 </div>
+<script>
+  // $(document)
+  //   .ready(function() {
+  //     $('.ui.form')
+  //       .form({
+  //         fields: {
+  //           user: {
+  //             identifier  : 'user',
+  //             rules: [
+  //               {
+  //                 type   : 'empty',
+  //                 prompt : 'Digite seu usuário'
+  //               },
+  //               {
+  //                 type   : 'user',
+  //                 prompt : 'Digite um usuário valido'
+  //               }
+  //             ]
+  //           },
+  //           password: {
+  //             identifier  : 'password',
+  //             rules: [
+  //               {
+  //                 type   : 'empty',
+  //                 prompt : 'Digite sua senha'
+  //               },
+  //               {
+  //                 type   : 'length[6]',
+  //                 prompt : 'Sua senha tem que ter ao menos 6 caracteres'
+  //               }
+  //             ]
+  //           }
+  //         }
+  //       })
+  //     ;
+  //   })
+  // ;
+</script>
 </body>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </html>
+
