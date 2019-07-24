@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="semantic/semantic.min.css">
+    <link href="node_modules/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+    <link href="node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main_admin.css">
+    <link rel="stylesheet" href="semantic/components/toast.min.css">
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="semantic/components/toast.min.js"></script>
+    <script type="text/javascript" src="semantic/semantic.js"></script>
+    <script type="text/javascript" src="node_modules/tabulator-tables/dist/js/tabulator.js"></script>
+    <script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+
+    <title>Cadastro</title>
+</head>
+
+<body>
+  <div class="pusher">
+    <div class="ui top inverted  menu asd marginlefting borderless"
+      style="border-radius: 0!important; border: 0;  -webkit-transition-duration: 0.1s;">
+      <a class="item openbtn">
+        <i class="icon content"></i>
+      </a>
+      <a class="mav red item" href="cadastro.php">Cadastro</a>
+      <a class="mav blue item" href="conferencia.php" >Conferência</a>
+      <a class="mav orange item" href="horas.php">Planilha de horas</a>
+
+      <div class="right menu">
+       
+
+        <div class="ui inverted dropdown item">
+          <!-- <img class="ui avatar image" src="img/square-image.png"> -->
+          <?php if (isLoggedIn()): ?>
+          <span><?php echo $_SESSION['user_name']; ?></span>
+          <?php else: ?>
+             <p>Olá, visitante. <a href="login.html">Login</a></p>
+        <?php endif; ?>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item">Configurações</a>
+            <a href="logout.php" class="item"><i class="power off icon red"></i>Sair</a>
+          </div>
+        </div>
+        <!-- <div class="item">
+        <div class="ui red button">Sair</div>
+      </div> -->
+      </div>
+    </div>
+  </div>

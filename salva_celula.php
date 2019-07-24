@@ -48,7 +48,7 @@ if (!empty($cell) OR !empty($old) ) {
     $inserir = "UPDATE rascunho_cm SET ".$campo_bd."='$cell' WHERE matricula_id ='$index' "; //&& $campo_bd='$campo'
     $stmt = $conn->prepare($inserir);
     $stmt->execute();
-    echo $stmt->rowCount() . " records UPDATED successfully";
+    echo ($stmt->rowCount()) . " records UPDATED successfully";
     }
     catch(PDOException $e)
     {
@@ -60,26 +60,30 @@ $conn = null;
 
 
     //echo json_encode(array('success' => 1));
+
+    echo "DEU CERTO";
+    var_dump($index);
     print_r( $cell);
-    echo '/campo </br>';
+    echo ('<br>');
     print_r( $campo);
-    echo '/index </br>';
+    echo ('<br>');
     print_r( $index);
-    echo '/c_bd </br>';
+    echo ('<br>');
     print_r( $campo_bd);
-    echo '/c_bd </br>';    
+    echo ('<br>');    
     var_dump($campo_bd);
-    echo '/OLD </br>';    
+    echo ('<br>');    
     echo($old);
 } else {
-    //echo json_encode(array('success' => 0));
+    //echo (json_encode(array('succes)s' => 0));
+    echo "DEU ERRADO";
     echo $cell;
-    echo '/ </br>';    
+    echo ('<br>');    
     print_r( $campo);
-    echo '/ </br>';    
+    echo ('<br>');    
     print_r( $index);
     print_r( $campo_bd);
-    echo '/>> </br>';    
+    echo ('<br>');    
     print_r($old);
 }
 

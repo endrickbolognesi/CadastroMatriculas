@@ -53,30 +53,7 @@ $(".mav").on("click", function(){
    }
  });
 
-     
-     var teste = [
-      <?php
-      $conn = db_connect();
-      // matricula_id, data_rascunho, newdate, area, proprietarios, cad_imobiliario, onus_vigente, data_conf, datanova, nome, atos_cadastrados, atos_existentes, duvidas 
-      $sql = 'SELECT * FROM rascunho_cm ORDER BY matricula_id';
-      $data = $conn->query($sql);
-      $data->setFetchMode(PDO::FETCH_ASSOC);
-      
-      while ($r = $data->fetch()): 
-      ?>
-      
-      {
-          id:<?php echo $r['matricula_id'] ?>,
-          dataCerta:"<?php echo $r['newdate']; ?>",
-          name:"<?php echo $r['nome']; ?>", 
-          atosCad:"<?php echo $r['atos_cadastrados']; ?>",
-          atosExis:"<?php echo $r['atos_existentes']; ?>",
-          duvidas:"<?php echo $r['duvidas']; ?>",
-          
-      },  
-      <?php endwhile; ?>
-  ];
-  
+
   var dateEditor = function(cell, onRendered, success, cancel){
   
       var cellValue = moment(cell.getValue(), "DD/MM/YYYY").format("YYYY-MM-DD"),
@@ -121,10 +98,13 @@ $(".mav").on("click", function(){
       
         
       var table = new Tabulator("#example-table", {
+        
+      index: "matricula_id",
       selectable:true,
       selectable:5,
       selectableRollingSelection:false,
-      data:teste,
+      ajaxURL:"teste2.php",
+      
       height:"800px",
       layout:"fitColumns",
       responsiveLayout:true,
@@ -134,15 +114,15 @@ $(".mav").on("click", function(){
       
       //persistenceMode: true,
       columns:[
-          {title:"Matricula", field:"id", width:100, frozen:true},
-          {title:"Nome", field:"name", width:100,editor:true},
-          {title:"Data Certa F", field:"dataCerta", formatter:"datetime",editor:true, formatterParams:{
+          {title:"Matricula", field:"matricula_id", width:100, frozen:true},
+          {title:"Nome", field:"nome", width:100,editor:true},
+          {title:"Data Certa F", field:"newdate", formatter:"datetime",editor:true, formatterParams:{
               inputFormat:"YYYY-MM-DD",
               outputFormat:"DD/MM/YYYY",
               invalidPlaceholder:"(Data inválida)",
           }},
-          {title:"Atos Cadastrados", field:"atosCad",editor:true},
-          {title:"Atos Existentes", field:"atosExis",editor:true},
+          {title:"Atos Cadastrados", field:"atos_cadastrados",editor:true},
+          {title:"Atos Existentes", field:"atos_existentes",editor:true},
           {title:"Dúvidas", field:"duvidas",editor:true},
       ],
       
@@ -167,7 +147,8 @@ $(".mav").on("click", function(){
               $('body')
               .toast({
                 class: 'success',
-                message: '<?php echo $_SESSION['user_name']; ?> editou a Matricula: ' + cell.getRow().getIndex() +' Valor  antigo '+ cell.getOldValue() + ' Valor atual ' + cell.getValue()
+                displayTime: 0,
+                message: 'AJAX result: ' + response + '; status: ' + textStatus + '<?php echo $_SESSION['user_name']; ?> editou a Matricula: ' + cell.getRow().getIndex() +' Valor antigo '+ cell.getOldValue() + ' Valor atual ' + cell.getValue()
               })
             ;
           },

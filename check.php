@@ -6,3 +6,6 @@ if (!isLoggedIn())
 {
     header('Location: login.html');
 }
+if ($login == 1) {
+		
+}

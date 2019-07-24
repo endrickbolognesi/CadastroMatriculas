@@ -8,7 +8,7 @@ try {
 } catch(PDOException $e) {
     echo 'ERROR: ' . $e->getMessage();
 }
-$sql = 'SELECT * FROM rascunho_cm ORDER BY matricula_id';
+$sql = 'SELECT * FROM rascunho_cm ORDER BY matricula_id ';
 $data = $conn->query($sql);
 $data->setFetchMode(PDO::FETCH_ASSOC);
 
@@ -17,3 +17,4 @@ while ($r = $data->fetch()){
     $to_encode[] = $r;
 }
 echo json_encode($to_encode);
+//echo(json_encode(["last_page"=>30, "data"=>$to_encode]));

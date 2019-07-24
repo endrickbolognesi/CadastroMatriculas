@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <title>Login</title>
   <link rel="stylesheet" href="semantic/semantic.min.css">
+   <link rel="stylesheet" href="semantic/components/toast.min.css">
+
     <script type="text/javascript" src="js/jquery.min.js"></script>
+     <script type="text/javascript" src="semantic/components/toast.min.js"></script>
     <script type="text/javascript" src="semantic/semantic.js"></script>
 </head>
 <style>
@@ -37,21 +40,21 @@ background: radial-gradient(circle, rgba(0,67,110,1) 0%, rgba(0,188,148,1) 100%)
       </div>
     </h2>
   
-    <form action="login.php" method="post" class="ui large form">
+    <form id="formlogin" class="ui large form">
       <div class="ui stacked secondary  segment">
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input id="login" type="text" name="login" placeholder="Usuario">
+            <input id="login" type="text" name="login" placeholder="Usuário">
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input id="password' type="password" name="password" placeholder="Senha">
+            <input id="password" type="password" name="password" placeholder="Senha">
           </div>
         </div>
-        <input value="Entrar" type="submit" class="ui fluid large blue submit button">
+        <input id="enviar" value="Entrar" type="submit" class="ui fluid large blue submit button">
       </div>
 
       <div class="ui error message"></div>
@@ -60,6 +63,41 @@ background: radial-gradient(circle, rgba(0,67,110,1) 0%, rgba(0,188,148,1) 100%)
   </div>
 </div>
 <script>
+
+  $(document).ready(function() {
+      $('#formlogin').submit(function() { //Ao submeter formulário
+          var login = $('#login').val(); //Pega valor do campo email
+          var password = $('#password').val(); //Pega valor do campo password
+          $.ajax({ //Função ajax
+              url: "login.php", //Arquivo php
+              type: "post", //Método de envio
+              data: {login: login, password: password}, //Dados
+              success: function(result) { //Sucesso no AJAX
+                  if (result == 1) {
+                      location.href = 'cadastro.php' //Redireciona
+                  } else if(result == 2) {
+                      $('body')
+                          .toast({
+                            displayTime: 0,
+                              class: 'error',
+                              message: "Digite seu usuário e senha"
+                          });
+                      //Informa o erro
+                  }else{
+                     $('body')
+                          .toast({
+                            displayTime: 0,
+                              class: 'error',
+                              message: "O usuário ou senha incorreta"
+                          });
+                  }
+              },
+
+
+          })
+          return false; //Evita que a página seja atualizada
+      })
+  })
   // $(document)
   //   .ready(function() {
   //     $('.ui.form')
