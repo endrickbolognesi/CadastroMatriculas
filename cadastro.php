@@ -43,7 +43,7 @@ $('.ui.checkbox').checkbox().on("click", function(){
 
 
 $(".mav").on("click", function(){
-  $(".mav").removeClass("active");
+  //$(".mav").removeClass("active");
   $(this).toggleClass("active"); 
 })
 
