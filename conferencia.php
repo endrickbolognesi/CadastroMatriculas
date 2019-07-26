@@ -150,7 +150,11 @@ $(".mav").on("click", function(){
           
           type: "post",
           beforeSend : function () {
-           console.log('Carregando...');
+           Swal.fire({
+              type: 'success',
+              title: 'Enviado',
+              text: 'AJAX result: ' + response + '; status: ' + textStatus,
+              })
           },
           success: function(response, textStatus, xhr){
               //alert("AJAX result: " + response + "; status: " + textStatus);

@@ -32,20 +32,20 @@
       <a class="mav orange item" href="horas.php">Planilha de horas</a>
 
       <div class="right menu">
-        <div class="item">
+ <!--        <div class="item">
         
           <div class="ui fitted toggle checkbox">
             <input type="checkbox" tabindex="0" class="hidden darkmode">
           </div>
 
         </div>
-
+ -->
         <div class="ui inverted dropdown item">
           <!-- <img class="ui avatar image" src="img/square-image.png"> -->
           <?php if (isLoggedIn()): ?>
           <span><?php echo $_SESSION['user_name']; ?></span>
           <?php else: ?>
-             <p>Olá, visitante. <a href="login.html">Login</a></p>
+             header("Location: login.html");
         <?php endif; ?>
           <i class="dropdown icon"></i>
           <div class="menu">

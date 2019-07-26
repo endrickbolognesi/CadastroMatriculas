@@ -58,7 +58,7 @@ require 'check.php';
       $data->setFetchMode(PDO::FETCH_ASSOC);
   	while ($r = $data->fetch()): 
       ?>
-
+		
     <tr>
       <td><?php echo $r['name'] ?></td>
       <td><?php echo $r['login'] ?></td>
@@ -73,13 +73,13 @@ require 'check.php';
       	</td>
       	<td class="center aligned">
 			<div >
-				<button class="ui yellow icon button">
+				<a href="edita_user.php" class="ui yellow icon button">
 				  <i class="edit icon"></i>
-				</button>
+				</a>
 			
-				<button class="ui red icon button">
+				<a id="<?php echo $r['id'] ?>" class="ui delete red icon button">
 				  <i class="trash icon"></i>
-				</button>
+				</a>
 			</div>	
       </td>
     
@@ -98,40 +98,41 @@ require 'check.php';
 		Cadastrar Novo Usuário
 	</div>
 	<div class="content">
-		<form class="ui inverted form">
+		<form id="create_user" class="ui inverted form">
+
 			<div class="field">
 				<label>Nome do usuário</label>
-				<input type="text" name="first-name" placeholder="Nome">
+				<input id="nome" type="text" name="first-name" placeholder="Nome">
 			</div>
 			<div class="fields">
 				<div class="twelve  wide field">
 					<label>Login</label>
-					<input type="text" name="last-name" placeholder="Login">
+					<input id="login" type="text" name="login" placeholder="Login">
 				</div>
 				<div class="twelve  wide field">
 					<label>Senha</label>
-					<input type="password" name="password" placeholder="Senha">
+					<input id="senha" type="password" name="password" placeholder="Senha">
 				</div>
 				
 			</div>
 			<div class="field">
 					<label>Tipo</label>
 					<div class="ui selection dropdown">
-						<input type="hidden" name="tipo">
+						<input id="tipo" type="hidden" name="tipo">
 						<i class="dropdown icon"></i>
 						<div class="default text">seleciona o nivel de acesso</div>
 						<div class="menu">
-<?php
+							<?php
 
-      $conn = db_connect();
-      $sql = 'SELECT descricao
-          FROM niveis
-          ORDER BY nivel_id';
-      $data = $conn->query($sql);
-      $data->setFetchMode(PDO::FETCH_ASSOC);
-  	while ($r = $data->fetch()): 
-      ?>
-							<div class="item" data-value="<?php echo $r['nivel'] ?>"><?php echo $r['descricao'] ?></div>
+							      $conn = db_connect();
+							      $sql = 'SELECT *
+							          FROM niveis
+							          ORDER BY nivel_id';
+							      $data = $conn->query($sql);
+							      $data->setFetchMode(PDO::FETCH_ASSOC);
+							  	while ($r = $data->fetch()): 
+							      ?>
+							<div  class="item" data-value="<?php echo $r['nivel'] ?>"><?php echo $r['descricao'] ?></div>
 							<?php endwhile; ?>
 						</div>
 					</div>
@@ -142,7 +143,7 @@ require 'check.php';
 	</div>
 	<div class="actions">
 		<div class="ui button left floated red">Cancelar</div>
-		<div class="ui button green">Cadastrar</div>
+		<div id="send_create_user" class="ui button green">Cadastrar</div>
 	</div>
 </div>
 </body>
@@ -173,7 +174,71 @@ $('#novo').on("click", function(){
 
 	$('.ui.modal').modal('show');
 })
-  
+  	//Criar usuário
+    $(document).ready(function() {
+      $('#send_create_user').click(function() { //Ao submeter formulário
+          var nome = $('#nome').val(); //Pega valor do campo email
+          var senha = $('#senha').val();
+          var login = $('#login').val();
+          var tipo = $('#tipo').val(); //Pega valor do campo password
+          $.ajax({ //Função ajax
+              url: "cria_user.php", //Arquivo php
+              type: "post", //Método de envio
+              data: {nome: nome, senha: senha, login: login, tipo: tipo}, //Dados
+ 
+	          success: function(nome){
+	              //alert("AJAX result: " + response + "; status: " + textStatus);
+	              $('body')
+              .toast({
+                class: 'success',
+                message: "Usuário cadastrado com sucesso"
+              })
+            ;
+	              
+	          },
+
+
+          })
+          return false; //Evita que a página seja atualizada
+      });
+      
+
+    //Deleta usuario
+
+      $('.delete').click(function() { 
+         id = $(this).attr("id");
+          $.ajax({ 
+              url: "delete_user.php", 
+              type: "post", 
+              data: {id: id}, 
+ 				
+ 				beforeSend : function (id) {
+ 					Swal.fire({
+					  title: 'Você tem certeza que deseja excluir?',
+					  type: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Sim, desejo deletar!',
+					  cancelButtonText: 'Cencelar'
+						}).then((result) => {
+					  if (result.value) {
+					    Swal.fire(
+					      'Deletado!',
+					      'O usuário foi removido.',
+					      'success'
+					    )
+					  }
+					})
+
+		          },
+
+
+
+          })
+          return false; //Evita que a página seja atualizada
+      })
+ })	
 
 
  </script>

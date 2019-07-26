@@ -40,7 +40,7 @@
           <?php if (isLoggedIn()): ?>
           <span><?php echo $_SESSION['user_name']; ?></span>
           <?php else: ?>
-             <p>Olá, visitante. <a href="login.html">Login</a></p>
+             header("Location: login.html");
         <?php endif; ?>
           <i class="dropdown icon"></i>
           <div class="menu">
