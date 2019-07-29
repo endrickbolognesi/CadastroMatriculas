@@ -17,7 +17,7 @@ require 'check.php';
 
 <div class="column">
 	
-<table id="tabela" class="ui very compact selectable inverted table ">
+<table id="tabela" class="ui very   compact selectable inverted table ">
 <!-- 	<thead class="full-width">
     <tr>
       <th></th>
@@ -30,9 +30,10 @@ require 'check.php';
   </thead> -->
   <thead>
     <tr>
-      <th>Nome</th>
-      <th>Login</th>
-      <th>Tipo</th>
+      <th class="two wide ">Nome</th>
+      <th class="two wide ">Login</th>
+      <th class="two wide ">Tipo</th>
+      <th class="five wide ">Senha</th>
       <th class="two wide ">
       	<div id="novo" class="ui right floated small green labeled icon button">
           <i class="user icon"></i> Novo
@@ -71,7 +72,8 @@ require 'check.php';
       		echo "Admin"; 
       	} ?>
       	</td>
-      	<td class="center aligned">
+      	<td><?php echo $r['password'] ?></td>
+      	<td class="right aligned">
 			<div >
 				<a href="edita_user.php" class="ui yellow icon button">
 				  <i class="edit icon"></i>
@@ -142,7 +144,7 @@ require 'check.php';
 		</form>
 	</div>
 	<div class="actions">
-		<div class="ui button left floated red">Cancelar</div>
+		<div id="cancelar" class="ui button left floated red">Cancelar</div>
 		<div id="send_create_user" class="ui button green">Cadastrar</div>
 	</div>
 </div>
@@ -174,6 +176,10 @@ $('#novo').on("click", function(){
 
 	$('.ui.modal').modal('show');
 })
+$('#cancelar').on("click", function(){
+
+	$('.ui.modal').modal('hide');
+})
   	//Criar usuário
     $(document).ready(function() {
       $('#send_create_user').click(function() { //Ao submeter formulário
@@ -196,6 +202,7 @@ $('#novo').on("click", function(){
             ;
 	              
 	          },
+	          
 
 
           })
@@ -212,26 +219,11 @@ $('#novo').on("click", function(){
               type: "post", 
               data: {id: id}, 
  				
- 				beforeSend : function (id) {
- 					Swal.fire({
-					  title: 'Você tem certeza que deseja excluir?',
-					  type: 'warning',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Sim, desejo deletar!',
-					  cancelButtonText: 'Cencelar'
-						}).then((result) => {
-					  if (result.value) {
-					    Swal.fire(
-					      'Deletado!',
-					      'O usuário foi removido.',
-					      'success'
-					    )
-					  }
-					})
 
-		          },
+		          complete: function(){
+			     location.reload();
+
+			   },
 
 
 

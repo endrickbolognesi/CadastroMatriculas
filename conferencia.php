@@ -8,46 +8,9 @@ require 'check.php';
 <?php include'header.html' ?>
 <div id="example-table" class="marginlefting asd" style="border-radius: 0!important; border: 0; margin-left: 260px; -webkit-transition-duration: 0.1s;"></div>
   
+
+  <script type="text/javascript" src="js/table.js"></script>
 <script>
-  $(".openbtn").on("click", function() {
-  $(".ui.sidebar").toggleClass("very thin icon");
-  $(".asd").toggleClass("marginlefting");
-  $(".sidebar z").toggleClass("displaynone");
-  $(".ui.accordion").toggleClass("displaynone");
-  $(".ui.dropdown.item").toggleClass("displayblock");
-  $(".logo").find('img').toggle();
-
- })
- // using context
-$('.context.example .ui.sidebar').sidebar({
-    context: $('.context.example .bottom.segment')
-  })
-  .sidebar('attach events', '.context.example .menu .item')
-;
- $(".ui.dropdown").dropdown({
-   allowCategorySelection: true,
-   transition: "fade up",
-   //context: 'sidebar',
-   on: "hover"
- });
-;
-
-$('.ui.checkbox').checkbox().on("click", function(){
-  $(".ui.menu").toggleClass("inverted");
-  $(".ui.dropdown.item").toggleClass("inverted");
-  $(".ui.accordion .title:not(.ui)").toggleClass("inverteCor");
-});
-
-$(".mav").on("click", function(){
-  $(".mav").removeClass("active");
-  $(this).toggleClass("active"); 
-})
-
- $('.ui.accordion').accordion({
-   selector: {
-
-   }
- });
 
      
      var teste = [
@@ -177,9 +140,7 @@ $(".mav").on("click", function(){
       },
   });
   
-  $("#download-xlsx").click(function(){
-      table.download("xlsx", "data.xlsx", {sheetName:"teste"});
-  });
+
   
   
       </script>

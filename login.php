@@ -18,7 +18,7 @@ $passwordHash = make_hash($password);
  
 $PDO = db_connect();
  	
-$sql = "SELECT id, name FROM users WHERE login = :login AND password = :password";
+$sql = "SELECT id, name, fknivel FROM users WHERE login = :login AND password = :password";
 $stmt = $PDO->prepare($sql);
  
 $stmt->bindParam(':login', $login);
@@ -41,6 +41,7 @@ echo 1;
 $user = $users[0];
 
 session_start();
+$_SESSION['nivel'] = $user['fknivel'];
 $_SESSION['logged_in'] = true;
 $_SESSION['user_id'] = $user['id'];
 $_SESSION['user_name'] = $user['name'];

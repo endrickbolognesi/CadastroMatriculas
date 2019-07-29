@@ -11,49 +11,9 @@ require 'check.php';
 
 <div id="example-table" class="marginlefting asd" style="border-radius: 0!important; border: 0; margin-left: 260px; -webkit-transition-duration: 0.1s;"></div>
 
+
+<script type="text/javascript" src="js/table.js"></script>
 <script>
-  $(".openbtn").on("click", function() {
-  $(".ui.sidebar").toggleClass("very thin icon");
-  $(".asd").toggleClass("marginlefting");
-  $(".sidebar z").toggleClass("displaynone");
-  $(".ui.accordion").toggleClass("displaynone");
-  $(".ui.dropdown.item").toggleClass("displayblock");
-  $(".logo").find('img').toggle();
-
- })
- // using context
-$('.context.example .ui.sidebar').sidebar({
-    context: $('.context.example .bottom.segment')
-  })
-  .sidebar('attach events', '.context.example .menu .item')
-;
- $(".ui.dropdown").dropdown({
-   allowCategorySelection: true,
-   transition: "fade up",
-   //context: 'sidebar',
-   on: "hover"
- });
-;
-
-$('.ui.checkbox').checkbox().on("click", function(){
-  $(".ui.menu").toggleClass("inverted");
-  $(".ui.accordion .title:not(.ui)").toggleClass("inverteCor");
-  
-});
-
-
-$(".mav").on("click", function(){
-  //$(".mav").removeClass("active");
-  $(this).toggleClass("active"); 
-})
-
- $('.ui.accordion').accordion({
-   selector: {
-
-   }
- });
-
-
   var dateEditor = function(cell, onRendered, success, cancel){
   
       var cellValue = moment(cell.getValue(), "DD/MM/YYYY").format("YYYY-MM-DD"),
@@ -105,7 +65,8 @@ $(".mav").on("click", function(){
       selectableRollingSelection:false,
       ajaxURL:"teste2.php",
       
-      height:"800px",
+      //height:"800px",
+
       layout:"fitColumns",
       responsiveLayout:true,
       pagination:"local",
@@ -134,8 +95,8 @@ $(".mav").on("click", function(){
           // getField <<<<<<<<<<<<<<<<<
           
           type: "post",
-          beforeSend : function () {
-           console.log('Carregando...');
+          beforeSend : function (valor, campo, index, old) {
+           console.log('<?php echo $_SESSION['user_name']; ?>' + ' editou ' + cell.getValue() + ' ' + cell.getField() + ' ' + cell.getRow().getIndex() + ' Valor antigo: ' + cell.getOldValue());
           },
           success: function(response, textStatus, xhr){
               //alert("AJAX result: " + response + "; status: " + textStatus);
@@ -165,10 +126,6 @@ $(".mav").on("click", function(){
       },
   });
   
-  $("#download-xlsx").click(function(){
-      table.download("xlsx", "data.xlsx", {sheetName:"teste"});
-  });
-
   
       </script>
 </body>
