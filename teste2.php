@@ -8,7 +8,7 @@ try {
 } catch(PDOException $e) {
     echo 'ERROR: ' . $e->getMessage();
 }
-$sql = 'SELECT * FROM rascunho_cm ORDER BY matricula_id ';
+$sql = 'SELECT * FROM conferencia ORDER BY matricula_id ';
 $data = $conn->query($sql);
 $data->setFetchMode(PDO::FETCH_ASSOC);
 

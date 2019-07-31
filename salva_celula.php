@@ -52,7 +52,7 @@ $old = $_POST['old'];
 //$salvar = $_REQUEST["action"];
 if (!empty($cell) OR !empty($old) ) {
     try{
-    $inserir = "UPDATE rascunho_cm SET ".$campo."='$cell' WHERE matricula_id ='$index' "; //&& $campo_bd='$campo'
+    $inserir = "UPDATE conferencia SET ".$campo."='$cell' WHERE matricula_id ='$index' "; //&& $campo_bd='$campo'
     $stmt = $conn->prepare($inserir);
     $stmt->execute();
     echo ($stmt->rowCount()) . " records UPDATED successfully";
@@ -67,8 +67,8 @@ $conn = null;
  
 
     //echo json_encode(array('success' => 1));
-
-    echo "DEU CERTO";
+    //Atualiza celula  
+    //echo '<script>  table.replaceData(); </script>';
     var_dump($index);
     print_r( $cell);
     echo ('<br> CAMPO'); 

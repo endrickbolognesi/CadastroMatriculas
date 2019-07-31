@@ -41,6 +41,10 @@ $('.ui.checkbox').checkbox().on("click", function(){
       table.download("xlsx", "data.xlsx", {sheetName:"teste"});
   });
 
+setInterval( function () {
+    table.replaceData();
+}, 600000 );
+  
 // $('.mav').dropdown({
 //   on: 'hover'
 // });

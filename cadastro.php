@@ -58,11 +58,12 @@ require 'check.php';
       
         
       var table = new Tabulator("#example-table", {
-        
+    //   persistentLayout: true,
+    // persistentSort: true,
+    // persistenceID:"examplePerststance",
+
       index: "matricula_id",
-      selectable:true,
-      selectable:5,
-      selectableRollingSelection:false,
+      // selectableRollingSelection:false,
       ajaxURL:"teste2.php",
       
       //height:"800px",
@@ -108,7 +109,7 @@ require 'check.php';
               $('body')
               .toast({
                 class: 'success',
-                displayTime: 0,
+                
                 message: 'AJAX result: ' + response + '; status: ' + textStatus + '<?php echo $_SESSION['user_name']; ?> editou a Matricula: ' + cell.getRow().getIndex() +' Valor antigo '+ cell.getOldValue() + ' Valor atual ' + cell.getValue()
               })
             ;
@@ -124,7 +125,9 @@ require 'check.php';
           }
           })
       },
+
   });
+
   
   
       </script>

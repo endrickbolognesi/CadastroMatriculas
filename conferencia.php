@@ -88,6 +88,7 @@ require 'check.php';
       responsiveLayout:true,
       pagination:"local",
       paginationSize:50,
+      
       paginationSizeSelector:[10, 50, 100, 200],
       
       //persistenceMode: true,
